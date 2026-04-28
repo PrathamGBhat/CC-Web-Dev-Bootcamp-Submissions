@@ -1,0 +1,51 @@
+{
+  "collectionName": "applications",
+  "description": "Applications submitted by students to opportunities",
+  "fields": {
+    "_id": {
+      "type": "ObjectId",
+      "description": "Unique application identifier"
+    },
+    "applicantId": {
+      "type": "ObjectId",
+      "ref": "users",
+      "required": true,
+      "description": "Reference to user who applied"
+    },
+    "opportunityId": {
+      "type": "ObjectId",
+      "ref": "opportunities",
+      "required": true,
+      "description": "Reference to opportunity being applied to"
+    },
+    "status": {
+      "type": "String",
+      "enum": ["pending", "accepted", "rejected", "withdrawn"],
+      "default": "pending"
+    },
+    "appliedAt": {
+      "type": "Date",
+      "default": "current timestamp"
+    },
+    "resumeUrl": {
+      "type": "String",
+      "description": "URL to uploaded resume"
+    },
+    "coverLetter": {
+      "type": "String"
+    },
+    "interviewDate": {
+      "type": "Date",
+      "description": "Interview scheduled date (if accepted)"
+    }
+  },
+  "example": {
+    "_id": "507f1f77bcf86cd799439061",
+    "applicantId": "507f1f77bcf86cd799439012",
+    "opportunityId": "507f1f77bcf86cd799439021",
+    "status": "pending",
+    "appliedAt": "2024-09-18T14:20:00Z",
+    "resumeUrl": "https://example.com/resumes/priya_resume.pdf",
+    "coverLetter": "I'm very interested in this role..."
+  }
+}

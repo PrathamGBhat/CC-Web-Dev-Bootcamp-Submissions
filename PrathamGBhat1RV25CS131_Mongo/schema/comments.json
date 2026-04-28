@@ -1,0 +1,37 @@
+{
+  "collectionName": "comments",
+  "description": "Discussions/comments on opportunities",
+  "note": "Embedded in opportunities collection - NOT a separate collection",
+  "embedded_in": "opportunities.comments",
+  "fields": {
+    "_id": {
+      "type": "ObjectId",
+      "description": "Unique comment identifier"
+    },
+    "author": {
+      "type": "ObjectId",
+      "ref": "users",
+      "description": "User who posted the comment"
+    },
+    "content": {
+      "type": "String",
+      "required": true
+    },
+    "createdAt": {
+      "type": "Date",
+      "default": "current timestamp"
+    },
+    "likes": {
+      "type": "Number",
+      "default": 0
+    }
+  },
+  "why_embedded": "Comments belong exclusively to one opportunity and are always fetched with it. No need for separate queries.",
+  "example": {
+    "_id": "507f1f77bcf86cd799439051",
+    "author": "507f1f77bcf86cd799439012",
+    "content": "Is this open for 2nd year students?",
+    "createdAt": "2024-09-18T10:30:00Z",
+    "likes": 3
+  }
+}

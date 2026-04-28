@@ -1,0 +1,90 @@
+{
+  "collectionName": "opportunities",
+  "description": "Internships, events, hackathons posts",
+  "fields": {
+    "_id": {
+      "type": "ObjectId",
+      "description": "Unique opportunity identifier"
+    },
+    "title": {
+      "type": "String",
+      "required": true
+    },
+    "description": {
+      "type": "String",
+      "required": true
+    },
+    "category": {
+      "type": "String",
+      "enum": ["internship", "hackathon", "event"],
+      "required": true
+    },
+    "createdBy": {
+      "type": "ObjectId",
+      "ref": "users",
+      "description": "Reference to creator (not embedded - user can update independently)"
+    },
+    "company": {
+      "type": "String"
+    },
+    "requiredSkills": {
+      "type": "Array of Strings"
+    },
+    "deadline": {
+      "type": "Date"
+    },
+    "comments": {
+      "type": "Array of Objects",
+      "description": "Embedded comments (always fetched with opportunity)",
+      "fields": {
+        "_id": "ObjectId",
+        "author": "ObjectId (ref to users)",
+        "content": "String",
+        "createdAt": "Date",
+        "likes": "Number"
+      }
+    },
+    "engagementMetrics": {
+      "type": "Object",
+      "description": "Trending/engagement data (embedded, denormalized for performance)",
+      "fields": {
+        "views": "Number",
+        "applications": "Number",
+        "bookmarks": "Number",
+        "comments": "Number",
+        "trendingScore": "Number (calculated based on engagement)"
+      }
+    },
+    "createdAt": {
+      "type": "Date",
+      "default": "current timestamp"
+    }
+  },
+  "example": {
+    "_id": "507f1f77bcf86cd799439021",
+    "title": "Summer Internship - Full Stack",
+    "description": "Join our team to build web applications.",
+    "category": "internship",
+    "createdBy": "507f1f77bcf86cd799439011",
+    "company": "TechStartup Inc.",
+    "requiredSkills": ["JavaScript", "React", "Node.js"],
+    "deadline": "2024-10-30T23:59:59Z",
+    "comments": [
+      {
+        "_id": "507f1f77bcf86cd799439051",
+        "author": "507f1f77bcf86cd799439012",
+        "content": "Is this open for 2nd year students?",
+        "createdAt": "2024-09-18T10:30:00Z",
+        "likes": 3
+      }
+    ],
+    "engagementMetrics": {
+      "views": 156,
+      "applications": 12,
+      "bookmarks": 34,
+      "comments": 1,
+      "trendingScore": 87
+    },
+    "createdAt": "2024-09-10T09:00:00Z"
+  }
+}

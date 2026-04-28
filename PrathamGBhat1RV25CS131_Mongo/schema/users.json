@@ -1,0 +1,51 @@
+{
+  "collectionName": "users",
+  "description": "Student profiles and account information",
+  "fields": {
+    "_id": {
+      "type": "ObjectId",
+      "description": "Unique user identifier"
+    },
+    "username": {
+      "type": "String",
+      "required": true,
+      "unique": true
+    },
+    "email": {
+      "type": "String",
+      "required": true,
+      "unique": true
+    },
+    "fullName": {
+      "type": "String",
+      "required": true
+    },
+    "skills": {
+      "type": "Array of Strings",
+      "description": "Technical skills (JavaScript, React, Python, etc.)"
+    },
+    "interests": {
+      "type": "Array of Strings",
+      "description": "Areas of interest (Web Dev, Data Science, etc.)"
+    },
+    "bookmarks": {
+      "type": "Array of ObjectId",
+      "ref": "opportunities",
+      "description": "IDs of bookmarked opportunities (embedded, not separate collection)"
+    },
+    "createdAt": {
+      "type": "Date",
+      "default": "current timestamp"
+    }
+  },
+  "example": {
+    "_id": "507f1f77bcf86cd799439011",
+    "username": "alex_sharma",
+    "email": "alex@university.edu",
+    "fullName": "Alex Sharma",
+    "skills": ["JavaScript", "React", "Node.js"],
+    "interests": ["Web Development", "StartUps"],
+    "bookmarks": ["507f1f77bcf86cd799439021", "507f1f77bcf86cd799439022"],
+    "createdAt": "2024-01-15T10:30:00Z"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "collectionName": "bookmarks",
+  "description": "Saved/bookmarked opportunities by users",
+  "note": "Can be embedded in users collection OR separate collection",
+  "option_1_embedded": {
+    "location": "In users collection",
+    "field": "bookmarks: [Array of ObjectId]",
+    "advantage": "Fast query, small data, user-specific"
+  },
+  "option_2_separate": {
+    "fields": {
+      "_id": {
+        "type": "ObjectId",
+        "description": "Unique bookmark identifier"
+      },
+      "userId": {
+        "type": "ObjectId",
+        "ref": "users",
+        "required": true
+      },
+      "opportunityId": {
+        "type": "ObjectId",
+        "ref": "opportunities",
+        "required": true
+      },
+      "bookmarkedAt": {
+        "type": "Date",
+        "default": "current timestamp"
+      },
+      "notes": {
+        "type": "String",
+        "description": "Personal notes about why bookmarked"
+      }
+    }
+  },
+  "example": {
+    "_id": "507f1f77bcf86cd799439071",
+    "userId": "507f1f77bcf86cd799439012",
+    "opportunityId": "507f1f77bcf86cd799439021",
+    "bookmarkedAt": "2024-09-18T12:30:00Z",
+    "notes": "Interesting internship, will apply next week"
+  }
+}
